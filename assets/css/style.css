@@ -1,0 +1,210 @@
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    padding: 0;
+    width: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 0 5px;
+}
+
+section {
+    display: flex;
+}
+
+aside p {
+    margin: 0;
+}
+
+div {
+    align-items: baseline;
+    display: flex;
+    height: 30%;
+    justify-content: center;
+    width: 90%;
+}
+
+img {
+    display: none;
+}
+
+form input,
+form label,
+form p,
+form select {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+form input[type="submit"] {
+    margin: 10px auto 0;
+    width: 90%;
+}
+
+form,
+details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 500px;
+    padding: 5px;
+    width: calc(100% -200px);
+}
+
+canvas {
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: block;
+    left: 0;
+}
+
+details {
+    border: thin solid black;
+    border-radius: 10px;
+}
+
+figure {
+    height: 30%;
+    width: 70%;
+    /* merged */
+    margin: 25px 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+summary {
+    padding: 5px;
+    text-align: center;
+}
+
+.canvas,
+#draw,
+#in,
+#out {
+    display: block;
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.download {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: thin solid black;
+    border-radius: 10px;
+    bottom: 0;
+    box-shadow: 0 0 5px black;
+    display: none;
+    left: 50%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.options {
+    display: none;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+.options .delete {
+    box-shadow: inset 0 0 5px red, 0 0 5px red;
+    margin-bottom: auto;
+    width: 100%;
+}
+
+.options .moveLeft {
+    height: 100%;
+}
+
+.options .moveRight {
+    height: 100%;
+}
+
+.options input {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    box-shadow: inset 0 0 5px black, 0 0 5px black;
+}
+
+.options p {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    bottom: 0;
+    left: 50%;
+    margin: 0;
+    padding: 5px 5px 0;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.download:hover {
+    box-shadow: 0 0 15px black;
+    color: #ffff00;
+}
+
+.options .delete:hover {
+    background-color: red;
+    box-shadow: inset 0 0 5px red, 0 0 15px red;
+}
+
+.options input:hover {
+    box-shadow: inset 0 0 5px black, 0 0 15px black;
+}
+
+#draw {
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+}
+
+#inFigure {
+    position: relative;
+}
+
+#monitors {
+    display: flex;
+    height: auto;
+    margin: 10px 0;
+    min-width: 100%;
+    padding: 0;
+}
+
+#monitors li {
+    align-items: flex-end;
+    box-sizing: border-box;
+    display: flex;
+    list-style: none;
+    position: relative;
+}
+
+#monitors li canvas {
+    box-sizing: border-box;
+    display: block;
+    max-height: 100%;
+    width: 100%;
+}
+
+#outFigure {
+    position: relative;
+}
+
+#monitors li:hover .options {
+    display: flex;
+}
+
+#outFigure:hover .download {
+    display: block;
+}
