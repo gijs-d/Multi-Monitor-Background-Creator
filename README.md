@@ -68,6 +68,8 @@ If you want to add more resolutions, you can do so by modifying the JavaScript f
 Open the site, add your monitors, and the application will visualize how the background spans across your monitors. Below is an example of the output:
 
 
-![Output Screenshot](screenshot.png)
+![Screenshot](screenshot.png)
 
 To save the resulting background image to your device, hover over the bottom canvas so the download button appears.
+
+![Output](output.png)

@@ -225,7 +225,6 @@ function showMonitors() {
     options.totalWidth = monitors.reduce((a, b) => (a + b.scaledW), 0);
     document.querySelector('#minRes').textContent = `${Math.ceil(totalWidth * maxPpi)} x ${Math.ceil(totalHeight * maxPpi)}`;
     monitorsElem.style['aspect-ratio'] = `${totalWidth} / ${totalHeight}`;
-    console.log(monitors);
     document.querySelector('#monitors').innerHTML = monitors.map((monitor) => `
         <li id="${monitor.id}" style=" width:${monitor.widthInch * 100}px; ">
             <div class="options" style=" height:${monitor.scaledH * 100 / (totalHeight * maxPpi)}%; " > 
