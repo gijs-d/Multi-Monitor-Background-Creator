@@ -107,7 +107,7 @@ function rateLimiter(i = 0) {
 
 function downloadImg() {
     const link = document.createElement('a');
-    link.download = `background-${Math.random().toString(36).slice(3)}.png`;
+    link.download = 'background.png';
     link.href = document.querySelector('#out').toDataURL('image/png');
     link.click();
 }
