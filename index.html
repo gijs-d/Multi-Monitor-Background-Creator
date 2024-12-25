@@ -1,60 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multi-Monitor Background Creator</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-  <main>
-    <form>
-      <label for="maxw">max width</label>
-      <input type="number" id="maxw">
-    </form>
-    <details>
-      <summary>move screens</summary>
-      <form id="offsets">
-        <label for="x">offset x</label>
-        <input type="number" placeholder="offset x" id="x" name="startOffsetX" class="offsets">
-        <label for="y">offset y</label>
-        <input type="number" placeholder="offset y" id="y" name="offsetY" class="offsets">
-        <label for="boost">move offset faster</label>
-        <input type="range" id="boost" min="1" max="100" value="1">
-        <label for="scale">scale</label>
-        <input type="number" id="scale" placeholder="scale" name="scale" step="0.01">
-        <label for="color">border color</label>
-        <input type="color" name="color" id="color">
-        <label for="border">border width</label>
-        <input type="number" name="borderWidth" id="border">
-      </form>
-    </details>
-    <aside>
-      <p>min res: <span id="minRes"></span></p>
-      <p>img res: <span id="imgRes"></span></p>
-      <input type="file" accept="image/*" id="inputImg">
-    </aside>
-    <img src="media/img4.jpg">
-    <figure id="inFigure">
-      <canvas id="in"></canvas>
-      <canvas id="draw"></canvas>
-    </figure>
-    <details>
-      <summary>add monitor</summary>
-      <form id="addMonitor">
-        <label for="resolution">resolution</label>
-        <select id="resolution" name="resolution"></select>
-        <label for="diagonal">diagonal (inch)</label>
-        <input type="number" id="diagonal" min="0" name="diagonal" step="0.01">
-        <input type="submit" value="Add">
-      </form>
-    </details>
-    <ul id="monitors"></ul>
-    <figure id="outFigure">
-      <canvas id="out"></canvas>
-      <input type="button" value="Download" id="downloadBtn" class="download">
-    </figure>
-  </main>
-  <script src="assets/js/script.js"></script>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Multi-Monitor Background Creator</title>
+        <link rel="stylesheet" href="assets/css/style.css" />
+    </head>
+    <body>
+        <main>
+            <form>
+                <label for="maxw">Max width</label>
+                <input type="number" id="maxw" />
+            </form>
+            <details>
+                <summary>Move Screens</summary>
+                <form id="offsets">
+                    <label for="x">Offset x</label>
+                    <input
+                        type="number"
+                        placeholder="offset x"
+                        id="x"
+                        name="startOffsetX"
+                        class="offsets"
+                    />
+                    <label for="y">Offset y</label>
+                    <input
+                        type="number"
+                        placeholder="offset y"
+                        id="y"
+                        name="offsetY"
+                        class="offsets"
+                    />
+                    <label for="boost">Move offset faster</label>
+                    <input type="range" id="boost" min="1" max="100" value="1" />
+                    <label for="scale">Scale</label>
+                    <input type="number" id="scale" placeholder="scale" name="scale" step="0.01" />
+                    <label for="color">Border color</label>
+                    <input type="color" name="color" id="color" />
+                    <label for="border">Border width</label>
+                    <input type="number" name="borderWidth" id="border" />
+                </form>
+            </details>
+            <aside>
+                <div>
+                    <p>Screens: <span id="minRes">0 x 0</span></p>
+                    <p>Img: <span id="imgRes">0 x 0</span></p>
+                </div>
+
+                <input type="file" accept="image/*" id="inputImg" />
+            </aside>
+            <img src="media/img4.jpg" />
+            <figure id="inFigure">
+                <canvas id="in"></canvas>
+                <canvas id="draw"></canvas>
+            </figure>
+            <details>
+                <summary>Add Monitor</summary>
+                <form id="addMonitor">
+                    <label for="resolution">Resolution</label>
+                    <select id="resolution" name="resolution"></select>
+                    <label for="diagonal">Diagonal (inch)</label>
+                    <input type="number" id="diagonal" min="0" name="diagonal" step="0.01" />
+                    <input type="submit" value="Add" />
+                </form>
+            </details>
+            <ul id="monitors"></ul>
+            <figure id="outFigure">
+                <canvas id="out"></canvas>
+                <input type="button" value="Download" id="downloadBtn" class="download" />
+            </figure>
+        </main>
+        <script src="assets/js/script.js"></script>
+    </body>
 </html>
