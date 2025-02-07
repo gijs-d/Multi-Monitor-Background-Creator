@@ -57,6 +57,26 @@ function addEventListeners() {
     document.querySelector('#draw').addEventListener('click', setRectangleLocation);
     document.querySelector('#inputImg').addEventListener('change', loadNewImg);
     document.querySelector('#downloadBtn').addEventListener('click', downloadImg);
+    document.querySelector('#lightDark').addEventListener('click', toggleLightDark);
+}
+
+function toggleLightDark(e) {
+    const dark = e.target.classList.toggle('dark');
+    const computedStyle = getComputedStyle(document.documentElement);
+    [
+        'border',
+        'background',
+        'input-hover',
+        'details',
+        'text',
+        'overlay-background',
+        'shadow',
+    ].forEach((variable) => {
+        document.documentElement.style.setProperty(
+            `--${variable}`,
+            computedStyle.getPropertyValue(`--${variable}-${dark ? 'dark' : 'light'}`)
+        );
+    });
 }
 
 function setInputs() {
@@ -194,7 +214,6 @@ function changeRects() {
         );
         offsetX += monitor.scaledW;
     });
- 
 }
 
 function showResult() {
@@ -212,7 +231,7 @@ function showResult() {
         ctx.drawImage(
             img,
             offsetX,
-            offsetY + (totalHeight - monitor.scaledH),
+            offsetY + (totalHeight * options.scale - monitor.scaledH),
             monitor.scaledW,
             monitor.scaledH,
             0,
@@ -223,7 +242,7 @@ function showResult() {
         ctxOut.drawImage(
             img,
             offsetX,
-            offsetY + (totalHeight - monitor.scaledH),
+            offsetY + (totalHeight * options.scale - monitor.scaledH),
             monitor.scaledW,
             monitor.scaledH,
             offsetXOut,
