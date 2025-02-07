@@ -50,7 +50,7 @@ function addEventListeners() {
         .querySelector('#maxw')
         .addEventListener(
             'input',
-            e => (document.querySelector('main').style.maxWidth = `${e.target.value}px`)
+            (e) => (document.querySelector('main').style.maxWidth = `${e.target.value}px`)
         );
     document.querySelector('#addMonitor').addEventListener('submit', addMonitor);
     document.querySelector('#offsets').addEventListener('input', changePosition);
@@ -90,10 +90,7 @@ function changePosition(e) {
         booster = Number(input.value);
         return;
     }
-    {
-        input.classList.contains('offsets');
-    }
-    {
+    if (input.classList.contains('offsets')) {
         options[input.name] += (Number(input.value) - options[input.name]) * booster;
         input.value = options[input.name];
     }
@@ -147,7 +144,9 @@ async function loadImg() {
     const ctxIn = canvasIn.getContext('2d');
     const canvasDraw = document.querySelector('#draw');
     const ctxDraw = canvasDraw.getContext('2d');
-    await new Promise(r => (img.onload = r));
+    if (!img.complete) {
+        await new Promise((r) => (img.onload = r));
+    }
     const { width, height } = img;
     const { color, borderWidth } = options;
     document.querySelector('#imgRes').innerText = `${width} x ${height}`;
@@ -177,7 +176,7 @@ function changeRects() {
     const { offsetY, scale, color, borderWidth } = options;
     let maxPpi = monitors.reduce((a, b) => Math.max(a, b.ppi), 0);
     maxPpi *= scale;
-    monitors = monitors.map(monitor => ({
+    monitors = monitors.map((monitor) => ({
         ...monitor,
         scaledW: monitor.widthInch * maxPpi,
         scaledH: monitor.heightInch * maxPpi,
@@ -186,7 +185,7 @@ function changeRects() {
     ctxDraw.clearRect(0, 0, canvasDraw.width, canvasDraw.height);
     ctxDraw.strokeStyle = color;
     ctxDraw.lineWidth = borderWidth;
-    monitors.forEach(monitor => {
+    monitors.forEach((monitor) => {
         ctxDraw.strokeRect(
             offsetX,
             offsetY + (totalHeight - monitor.scaledH),
@@ -195,7 +194,7 @@ function changeRects() {
         );
         offsetX += monitor.scaledW;
     });
-    options = { ...options, totalHeight };
+ 
 }
 
 function showResult() {
@@ -208,7 +207,7 @@ function showResult() {
     let offsetXOut = 0;
     canvasOut.width = maxWidth;
     canvasOut.height = maxHeight;
-    monitors.forEach(monitor => {
+    monitors.forEach((monitor) => {
         const ctx = monitor.canvas.getContext('2d');
         ctx.drawImage(
             img,
@@ -256,7 +255,7 @@ function showMonitors() {
     const totalWidth = monitors.reduce((a, b) => (a += b.widthInch), 0);
     const totalHeight = monitors.reduce((a, b) => Math.max(a, b.heightInch), 0);
     const maxPpi = monitors.reduce((a, b) => Math.max(a, b.ppi), 0);
-    monitors = monitors.map(monitor => ({
+    monitors = monitors.map((monitor) => ({
         ...monitor,
         scaledW: monitor.widthInch * maxPpi,
         scaledH: monitor.heightInch * maxPpi,
@@ -269,7 +268,7 @@ function showMonitors() {
     monitorsElem.style['aspect-ratio'] = `${totalWidth} / ${totalHeight}`;
     document.querySelector('#monitors').innerHTML = monitors
         .map(
-            monitor => `
+            (monitor) => `
         <li id="${monitor.id}" style=" width:${monitor.widthInch * 100}px; ">
             <div class="options" style=" height:${
                 (monitor.scaledH * 100) / (totalHeight * maxPpi)
@@ -284,22 +283,22 @@ function showMonitors() {
         `
         )
         .join('');
-    monitors = monitors.map(monitor => ({
+    monitors = monitors.map((monitor) => ({
         ...monitor,
         canvas: document.querySelector(`#${monitor.id} canvas`),
     }));
     document
         .querySelectorAll('#monitors li')
-        .forEach(d => d.addEventListener('click', handleMonitorEvents));
+        .forEach((d) => d.addEventListener('click', handleMonitorEvents));
 }
 
 function handleMonitorEvents(e) {
     const value = e.target.closest('input').value;
     const id = e.target.closest('li').id;
     if (value == 'X') {
-        monitors = monitors.filter(monitor => monitor.id != id);
+        monitors = monitors.filter((monitor) => monitor.id != id);
     } else {
-        const i = monitors.findIndex(monitor => monitor.id == id);
+        const i = monitors.findIndex((monitor) => monitor.id == id);
         const move = value == '<' ? -1 : 1;
         const newI = (i + move + monitors.length) % monitors.length;
         const temp = monitors[i];
